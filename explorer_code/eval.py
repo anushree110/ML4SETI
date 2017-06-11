@@ -6,10 +6,12 @@ import cv2
 import csv
 import glob
 net = caffe.Net('/home/nimbix/caffe/models/bvlc_alexnet/deploy.prototxt',
-'/home/nimbix/caffe/models/bvlc_alexnet/snapshots/iter_iter_19000.caffemodel.h5', caffe.TEST)
+'/home/nimbix/caffe/models/bvlc_alexnet/snapshots/iter_iter_30000.caffemodel.h5', caffe.TEST)
 csv_file = open('/home/nimbix/data/explorers/filename_uuid_map_test_data.csv')
 test_pngs = glob.glob('/home/nimbix/data/explorers/test_data_png/*.png')
 file_f = open('/home/nimbix/data/explorers/result4.csv', 'w')
+caffe.set_device(0)
+caffe.set_mode_gpu()
 for line in csv_file:
     line = line.strip('\n')
     file_info = line.split(',')
